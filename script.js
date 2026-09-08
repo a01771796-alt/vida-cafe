@@ -74,3 +74,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Vida Café — mapa de Google bajo demanda: el iframe de Google Maps es
+// pesado y tardaba mucho en cargar en móvil aunque tuviera loading="lazy"
+// (lazy solo retrasa cuándo se pide, no lo hace más ligero). Así que no se
+// incrusta hasta que el usuario toca el botón — recién ahí se crea el
+// <iframe> y empieza la descarga.
+document.addEventListener("DOMContentLoaded", () => {
+  const mapButton = document.querySelector(".location-map-load");
+  if (!mapButton) return;
+
+  mapButton.addEventListener(
+    "click",
+    () => {
+      const iframe = document.createElement("iframe");
+      iframe.title = "Mapa de ubicación de Vida Café";
+      iframe.src = mapButton.dataset.mapSrc;
+      iframe.width = "100%";
+      iframe.height = "380";
+      iframe.style.border = "0";
+      iframe.loading = "lazy";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      mapButton.replaceWith(iframe);
+    },
+    { once: true }
+  );
+});

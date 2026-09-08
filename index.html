@@ -456,12 +456,17 @@
       </div>
 
       <div class="location-map">
-        <iframe
-          title="Mapa de ubicación de Vida Café"
-          src="https://www.google.com/maps?q=Calle+Ignacio+Zaragoza+116%2C+Esp%C3%ADritu+Santo%2C+Metepec%2C+Estado+de+M%C3%A9xico&output=embed&z=16"
-          width="100%" height="380" style="border:0;" allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        <!-- El iframe de Google Maps es pesado (JS, tiles, fuentes propias) y
+             tardaba mucho en cargar en móvil, incluso con loading="lazy" —
+             lazy solo retrasa CUÁNDO empieza a pedirlo, no lo hace más ligero.
+             Por eso no se incrusta hasta que el usuario lo pide: el botón se
+             cambia por el iframe real al hacer clic (ver script.js). La URL
+             ya usa coordenadas en vez de la dirección en texto, así se
+             ahorra el paso de geocodificación en cuanto sí se carga. -->
+        <button type="button" class="location-map-load" data-map-src="https://www.google.com/maps?q=19.2511223,-99.6076966&output=embed&z=16">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2b2420" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.8 7-12.2A7 7 0 1 0 5 8.8C5 14.2 12 21 12 21Z"/><circle cx="12" cy="8.8" r="2.6"/></svg>
+          <span>Toca para ver el mapa</span>
+        </button>
       </div>
     </section>
 

@@ -261,6 +261,7 @@ section > h2 {
 }
 
 .header-inner {
+  position: relative;
   max-width: none;
   padding: 0 1.1rem;
   height: var(--header-height);
@@ -268,6 +269,17 @@ section > h2 {
   align-items: center;
   justify-content: space-between;
   gap: 1.1rem;
+}
+
+/* menu.html: sin los íconos de redes, el nav de categorías quedaba pegado
+   a la derecha (justify-content:space-between con solo 2 hijos). Se centra
+   de verdad en el header, independiente del ancho del logo — solo en
+   escritorio, en móvil la regla de la media query de abajo lo regresa a
+   position:static. */
+.categories-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .logo {
@@ -780,6 +792,27 @@ section > h2 {
   border: 0;
   display: block;
 }
+
+.location-map-load {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  height: 380px;
+  margin: 0;
+  padding: 0;
+  background: var(--color-panel);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  transition: background var(--transition);
+}
+.location-map-load:hover { background: var(--color-hover); }
+.location-map-load svg { width: 42px; height: 42px; }
 
 /* ---------- 12. CONTACTO ---------- */
 .contacto {
