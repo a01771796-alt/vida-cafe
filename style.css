@@ -667,6 +667,18 @@ section > h2 {
   font-size: 1.02rem;
 }
 
+/* Recordatorio chico de Chico/Mediano por categoría — nada más que una
+   etiqueta discreta pegada arriba a la derecha de la lista, para no competir
+   visualmente con los nombres/precios de abajo. */
+.menu-size-label {
+  text-align: right;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin: -0.9rem 0 0.6rem;
+}
+
 .menu-items li {
   display: flex;
   align-items: baseline;
@@ -979,11 +991,11 @@ section > h2 {
   .hero-brush { display: none; }
 
   /* El pato de la ficha de Horario se traslapaba con "Ubicación y horario"
-     en móvil. El ajuste anterior (top: -8px) nunca surtía efecto porque el
-     inline style="top:0" del <img> le gana en especificidad a cualquier
-     regla de clase. El fix real es que el <img> ahora sube menos (ver su
-     translateY inline) más este margen extra de aire arriba de las fichas. */
-  .location-grid { margin-top: 0.75rem; }
+     en móvil, y subirlo menos (para dejar aire) le quitaba el efecto de
+     "parado sobre el borde" de la tarjeta. Más simple: en móvil se oculta,
+     igual que el resto de los .site-doodle decorativos; en pantallas más
+     anchas sí hay aire de sobra y se queda caminando sobre la línea. */
+  .location-card .mascot-climb { display: none; }
 }
 
 /* ---------- 15. IMPRESIÓN (menu.html → PDF) ---------- */
