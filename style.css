@@ -954,6 +954,22 @@ section > h2 {
     transform: none;
     flex: 1 1 auto;
     min-width: 0;
+    /* Esta barra es la única pista de que las categorías se deslizan
+       horizontalmente — .main-nav trae scrollbar-width:none de base, así
+       que aquí se vuelve a mostrar, angosta y discreta. */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(43, 36, 32, 0.35) transparent;
+  }
+  .categories-nav::-webkit-scrollbar {
+    display: block;
+    height: 3px;
+  }
+  .categories-nav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .categories-nav::-webkit-scrollbar-thumb {
+    background: rgba(43, 36, 32, 0.35);
+    border-radius: 999px;
   }
 
   .categories-nav ul {
