@@ -70,7 +70,7 @@
   /* Acentos de crayón (bloques de titulares, flores, tarjetas) */
   --accent-yellow: #f0b429;
   --accent-orange: #d97e2b;
-  --accent-red: #d9503d;
+  --accent-red: #d53f2a;
   --accent-green: #4f8a52;
   --accent-blue: #4c7fb0;
   --accent-purple: #8b6bb1;
@@ -406,6 +406,8 @@ section > h2 {
 .hero-rating {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 0.4em;
   font-size: 1.02rem;
   color: var(--color-ink-soft);
@@ -976,9 +978,12 @@ section > h2 {
      horario" en pantallas angostas — se esconde igual que el resto. */
   .hero-brush { display: none; }
 
-  /* El pato parado en la ficha de Horario rozaba el título en móvil —
-     se recorre un poco más arriba para dejarle aire. */
-  .location-card .mascot-climb { top: -8px; }
+  /* El pato de la ficha de Horario se traslapaba con "Ubicación y horario"
+     en móvil. El ajuste anterior (top: -8px) nunca surtía efecto porque el
+     inline style="top:0" del <img> le gana en especificidad a cualquier
+     regla de clase. El fix real es que el <img> ahora sube menos (ver su
+     translateY inline) más este margen extra de aire arriba de las fichas. */
+  .location-grid { margin-top: 0.75rem; }
 }
 
 /* ---------- 15. IMPRESIÓN (menu.html → PDF) ---------- */

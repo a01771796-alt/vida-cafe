@@ -39,7 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
 // logo en el header queda fuera a propósito — ese se deja en negro (color
 // de tinta normal) vía CSS.
 document.addEventListener("DOMContentLoaded", () => {
-  const RAINBOW_COLORS = ["#d97e2b", "#d9503d", "#4f8a52", "#4c7fb0", "#8b6bb1", "#d9678f"];
+  // Colores oscurecidos respecto a los --accent-* de style.css lo justo para
+  // pasar contraste AA (4.5:1) sobre blanco en texto normal — los h3 de las
+  // tarjetas (ej. "Talleres de arte", "Horario") son texto chico sin negrita,
+  // así que no califican como "large text" y necesitan el mínimo estricto.
+  const RAINBOW_COLORS = ["#ad631f", "#d53f2a", "#4a814d", "#4879a7", "#8766af", "#cf3e71"];
 
   const headings = document.querySelectorAll("h1, h2, h3");
   headings.forEach((heading) => {

@@ -8,7 +8,6 @@
 
   <link rel="canonical" href="https://vida-cafe.a01771796.workers.dev/">
 
-  <!-- FOTO PLACEHOLDER: reemplazar por foto real de mejor calidad cuando el dueño la proporcione -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Vida Café">
   <meta property="og:title" content="Vida Café - Metepec">
@@ -54,13 +53,19 @@
       "ratingValue": "4.7",
       "reviewCount": "234"
     },
+    "openingHours": [
+      "Mo,Tu,We 16:00-21:30",
+      "Th,Fr 16:00-22:00",
+      "Sa 10:00-22:00",
+      "Su 10:00-21:30"
+    ],
     "sameAs": [
       "https://www.instagram.com/vidacafemetepec/"
     ]
   }
   </script>
-  <!-- NOTA: openingHours y telephone se omiten a propósito del structured data hasta
-       confirmar horario vigente y número de contacto (ver PENDIENTES en el código). -->
+  <!-- NOTA: telephone se omite a propósito del structured data hasta
+       confirmar el número de contacto (ver PENDIENTE en el código). -->
 </head>
 <body>
 
@@ -105,7 +110,7 @@
         </a>
       </nav>
 
-      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -434,10 +439,9 @@
 
       <div class="location-grid">
         <div class="location-card">
-          <img src="images/header-pato-color.png" alt="" class="site-doodle mascot-climb" style="top:0; right:16px; width:46px; transform:translateY(-100%) rotate(8deg);">
+          <img src="images/header-pato-color.png" alt="" class="site-doodle mascot-climb" style="top:0; right:16px; width:46px; transform:translateY(-22px) rotate(8deg);">
           <h3>Horario</h3>
-          <!-- PENDIENTE: confirmar horario vigente (dos fuentes distintas, ver notas) -->
-          <p>Horario por confirmar.</p>
+          <p>Lun–Mié: 16:00–21:30<br>Jue–Vie: 16:00–22:00<br>Sáb: 10:00–22:00<br>Dom: 10:00–21:30</p>
         </div>
 
         <div class="location-card">
