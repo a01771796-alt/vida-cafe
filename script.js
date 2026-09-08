@@ -1,0 +1,72 @@
+// Vida Café — navegación móvil
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("main-nav");
+
+  if (!toggle || !nav) return;
+
+  const closeNav = () => {
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeNav);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (nav.contains(event.target) || toggle.contains(event.target)) return;
+    closeNav();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (!nav.classList.contains("is-open")) return;
+    closeNav();
+  });
+});
+
+// Vida Café — títulos "arcoíris": cada letra de los títulos/subtítulos en
+// Bold Crayola, incluido el "Vida Café" del hero, toma un color distinto de
+// la paleta de crayón, para que se vean con más vida. El "Vida Café" del
+// logo en el header queda fuera a propósito — ese se deja en negro (color
+// de tinta normal) vía CSS.
+document.addEventListener("DOMContentLoaded", () => {
+  const RAINBOW_COLORS = ["#d97e2b", "#d9503d", "#4f8a52", "#4c7fb0", "#8b6bb1", "#d9678f"];
+
+  const headings = document.querySelectorAll("h1, h2, h3");
+  headings.forEach((heading) => {
+    const textNodes = [];
+    const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+    let node = walker.nextNode();
+    while (node) {
+      textNodes.push(node);
+      node = walker.nextNode();
+    }
+
+    let colorIndex = 0;
+    textNodes.forEach((textNode) => {
+      const fragment = document.createDocumentFragment();
+      textNode.textContent.split("").forEach((char) => {
+        if (char.trim() === "") {
+          fragment.appendChild(document.createTextNode(char));
+          return;
+        }
+        const span = document.createElement("span");
+        span.className = "rainbow-letter";
+        span.textContent = char;
+        span.style.color = RAINBOW_COLORS[colorIndex % RAINBOW_COLORS.length];
+        colorIndex += 1;
+        fragment.appendChild(span);
+      });
+      textNode.parentNode.replaceChild(fragment, textNode);
+    });
+  });
+});

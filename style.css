@@ -1,0 +1,1001 @@
+/* ==========================================================================
+   VIDA CAFÉ — style.css
+   Base: blanco y negro puro (fondo, botones, nav, texto, bordes).
+   El color SOLO aparece en los dibujos (patos, flores, pinceles, salpicaduras
+   de pintura) repartidos por la página — nunca en fondos de UI ni en letras.
+   Tipografía: Bold Crayola para títulos/encabezados (h1, h2, h3) — contraste
+   con Crayon Hand, que se usa en cuerpo, nav, botones y menú.
+   Fallback de Crayon Hand: Patrick Hand (Google Fonts) — solo si no carga.
+   Fallback de Bold Crayola: Permanent Marker (Google Fonts) — solo si no carga.
+   ========================================================================== */
+
+/* ---------- 0. FUENTES LOCALES ---------- */
+@font-face {
+  font-family: "Crayon Hand";
+  src: url("fonts/CrayonHandRegular2016Demo.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Crayon Kids";
+  src: url("fonts/Crayon_Kids_1.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* La fuente demo "Crayon Hand" trae la coma, el punto y el signo de
+   interrogación de cierre dibujados en blanco (glifo vacío, no ausente) —
+   así que el navegador no activa el fallback automático para esos
+   caracteres. Se parcha con una segunda cara de la MISMA familia,
+   restringida por unicode-range, que toma esos glifos puntuales de
+   Patrick Hand (mismo look "a mano"). El resto de la puntuación (¿ ! ; : '
+   " ( ) & - — / %) sí viene dibujada en Crayon Hand y no se toca. */
+@font-face {
+  font-family: "Crayon Hand";
+  src: url("fonts/PatrickHand-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+002C, U+002E, U+003F;
+}
+
+@font-face {
+  font-family: "Bold Crayola";
+  src: url("fonts/BoldCrayola-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* ---------- 1. VARIABLES ---------- */
+:root {
+  /* Fondo: blanco puro en todo el sitio */
+  --color-bg: #ffffff;
+  --color-panel: #ffffff;
+  --color-footer: #ffffff;
+  --color-border: var(--color-ink);
+  --color-hover: rgba(43, 36, 32, 0.06);
+
+  /* Tinta */
+  --color-ink: #2b2420;
+  --color-ink-soft: #55483d;
+  --color-line-blue: #2e6fd9;
+
+  /* Tucurundi (mascota) — trazo azul petróleo, sin relleno */
+  --duck-line: #2e6fd9;
+
+  /* Acentos de crayón (bloques de titulares, flores, tarjetas) */
+  --accent-yellow: #f0b429;
+  --accent-orange: #d97e2b;
+  --accent-red: #d9503d;
+  --accent-green: #4f8a52;
+  --accent-blue: #4c7fb0;
+  --accent-purple: #8b6bb1;
+  --accent-pink: #d9678f;
+
+  /* Tipografía */
+  --font-body: "Crayon Hand", "Patrick Hand", cursive;
+  --font-display: "Bold Crayola", "Permanent Marker", cursive;
+  --font-icon: "Crayon Kids", cursive;
+
+  /* Espaciado */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.75rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  --space-2xl: 5.5rem;
+
+  /* Layout */
+  --content-max: 1180px;
+  --header-gap: 1rem;
+  --header-height: 54px;
+  --header-clearance: calc(var(--header-height) + var(--header-gap) * 2 + 0.5rem);
+  --radius: 10px;
+  --radius-lg: 22px;
+  --transition: 0.25s ease;
+}
+
+/* ---------- 2. RESET / BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-clearance);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+svg { display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+/* Titulares en Bold Crayola para que contrasten con Crayon Hand en el
+   cuerpo — así ni el texto chico ni el grande se quedan en una sola
+   tipografía. */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Todos los títulos en Bold Crayola (incluido el del hero) se colorean letra
+   por letra desde script.js — cada span.rainbow-letter define su color vía
+   JS inline. El "Vida Café" del logo del header queda fuera a propósito:
+   se deja en negro (var(--color-ink), heredado de .logo). */
+
+p { margin: 0 0 1em; color: var(--color-ink); }
+p:last-child { margin-bottom: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+.header-inner,
+.footer-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+section > h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin-bottom: var(--space-xs);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- 3. TÍTULOS "CIRCULADOS A MANO" (técnica doodle, blanco y negro) ---------- */
+/* Cada palabra clave se envuelve en <span class="doodle-word ...">. El
+   ::before dibuja un anillo negro irregular y desalineado alrededor —como si
+   alguien la hubiera circulado con marcador— nunca un relleno de color: el
+   color de la página vive solo en los dibujos, no en las letras. */
+.doodle-word {
+  position: relative;
+  display: inline-block;
+  padding: 0.08em 0.3em;
+  z-index: 1;
+}
+.doodle-word::before {
+  content: "";
+  position: absolute;
+  inset: -0.1em -0.2em;
+  z-index: -1;
+  background: none;
+  border: 3px solid var(--color-ink);
+}
+
+/* doodle-color-* ya no tiñe nada — se conserva como nombre de clase en el
+   HTML para no reescribirlo, pero el color vive solo en los dibujos. */
+.doodle-color-a::before, .doodle-color-b::before, .doodle-color-c::before,
+.doodle-color-d::before, .doodle-color-e::before, .doodle-color-f::before { background: none; }
+
+.doodle-shape-1::before { border-radius: 62% 38% 55% 45% / 40% 60% 40% 60%; transform: rotate(-3deg) translate(-2%, 6%); }
+.doodle-shape-2::before { border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; transform: rotate(2.5deg) translate(3%, -4%); }
+.doodle-shape-3::before { border-radius: 50% 50% 60% 40% / 45% 55% 45% 55%; transform: rotate(-1.5deg) translate(-3%, -3%); }
+.doodle-shape-4::before { border-radius: 55% 45% 40% 60% / 60% 40% 55% 45%; transform: rotate(3deg) translate(2%, 5%); }
+.doodle-shape-5::before { border-radius: 45% 55% 55% 45% / 40% 60% 45% 55%; transform: rotate(-2deg) translate(0, -5%); }
+
+/* ---------- 4. BOTONES (blanco y negro — el color lo ponen los dibujos alrededor) ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.9em;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
+  border: 2.5px solid var(--color-ink);
+  transition: transform var(--transition), background var(--transition), color var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: #fff;
+}
+.btn-primary:hover { background: #fff; color: var(--color-ink); transform: rotate(-1deg) translateY(-2px); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-ink);
+}
+.btn-secondary:hover {
+  background: var(--color-ink);
+  color: #fff;
+  transform: rotate(1deg) translateY(-2px);
+}
+
+/* ---------- 5. HEADER ---------- */
+.site-header {
+  position: fixed;
+  top: var(--header-gap);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: calc(100% - 2rem);
+  max-width: 1040px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 8px 0 rgba(43, 36, 32, 0.08);
+}
+
+.header-inner {
+  max-width: none;
+  padding: 0 1.1rem;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  flex-shrink: 0;
+}
+.logo svg, .logo-mark { width: 28px; height: 28px; flex-shrink: 0; object-fit: contain; }
+.logo-mark { transform: rotate(-8deg); }
+/* El pato a color se repite mucho por el sitio (hero, footer, fichas) — en
+   el logo del header (nav) se deja en negro/silueta para que no sea tan
+   repetitivo. El del footer se queda a color. */
+.site-header .logo-mark { filter: brightness(0); }
+
+.main-nav {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.main-nav::-webkit-scrollbar { display: none; }
+
+.main-nav ul {
+  display: flex;
+  gap: 1.1rem;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.main-nav a {
+  position: relative;
+  display: inline-block;
+  color: var(--color-ink);
+  font-size: 0.92rem;
+  white-space: nowrap;
+  padding: 0.3em 0;
+  transition: color var(--transition);
+}
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -2px;
+  height: 2px;
+  background: var(--color-ink);
+  transition: right var(--transition);
+}
+.main-nav a:hover::after { right: 0; }
+
+.header-social {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.header-social a {
+  display: flex;
+  color: var(--color-ink);
+  transition: color var(--transition), transform var(--transition);
+}
+.header-social a:hover { color: var(--color-ink); transform: translateY(-1px) rotate(-4deg); opacity: 0.6; }
+.header-social svg { width: 17px; height: 17px; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: var(--color-ink);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 6. HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--header-clearance) var(--space-md) var(--space-md);
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.hero-mascot {
+  width: min(170px, 38vw);
+  margin: 0 auto var(--space-xs);
+}
+.hero-mascot img { width: 100%; height: auto; display: block; }
+
+.hero h1 {
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  margin-bottom: var(--space-xs);
+}
+
+.hero-tagline {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-sm);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xs);
+}
+
+.hero-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 1.02rem;
+  color: var(--color-ink-soft);
+}
+.hero-rating strong { color: var(--color-ink); }
+
+.hero-decor {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Recortes de dibujos infantiles (crayón/plumón) tomados de las hojas de
+   referencia — se colocan sueltos, como stickers, alrededor de la página.
+   Cada instancia fija su propio tamaño/posición/rotación por style inline. */
+.site-doodle {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Tucurundi asomándose sobre el borde de una ficha/tarjeta — a diferencia
+   del resto de los .site-doodle, va encima (z-index más alto) y a opacidad
+   completa, como si de verdad estuviera parado ahí. */
+.mascot-climb { opacity: 1; z-index: 2; }
+.hero-decor--flower-1 { top: 13%; left: 5%; width: 92px; transform: rotate(-6deg); }
+.hero-decor--flower-2 { top: 17%; right: 7%; width: 84px; transform: rotate(8deg); }
+.hero-decor--flower-3 { bottom: 8%; left: 11%; width: 70px; transform: rotate(4deg); }
+.hero-decor--star { bottom: 16%; right: 11%; width: 48px; }
+.hero-decor--splatter { top: 42%; left: 3%; width: 38px; }
+
+.hero-actions {
+  position: relative;
+  align-items: center;
+  margin-top: 2.6rem;
+}
+.hero-brush {
+  position: absolute;
+  top: -2.7rem;
+  left: 14%;
+  width: 50px;
+  height: auto;
+  transform: rotate(-14deg);
+}
+
+/* ---------- 7. SOBRE NOSOTROS ---------- */
+.about {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+.about-decor { position: absolute; z-index: 0; opacity: 0.9; pointer-events: none; }
+.about-decor--flower-1 { top: 4%; left: 3%; width: 56px; transform: rotate(-8deg); }
+.about-decor--star { bottom: 6%; left: 6%; width: 34px; }
+.about-decor--flower-2 { bottom: 3%; right: 4%; width: 60px; transform: rotate(10deg); }
+
+.about-card {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-text h2 {
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  margin-bottom: var(--space-md);
+}
+
+.about-text p {
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: var(--color-ink);
+}
+.about-text p + p { margin-top: 1em; }
+
+.about-photo {
+  max-width: 1080px;
+  margin: var(--space-xl) auto 0;
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transform: rotate(-0.6deg);
+  background: var(--color-panel);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+}
+
+/* ---------- 8. TALLERES Y EVENTOS ---------- */
+.talleres {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-panel);
+  position: relative;
+  overflow: hidden;
+}
+
+.talleres-duck {
+  position: absolute;
+  top: 6%;
+  right: 4%;
+  width: 130px;
+  opacity: 0.9;
+  transform: scaleX(-1) rotate(4deg);
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .talleres-duck { display: none; }
+}
+
+.talleres-grid {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.taller-card {
+  position: relative;
+  width: 300px;
+  padding: var(--space-md);
+  background: var(--color-bg);
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition);
+}
+.taller-card:nth-child(odd) { transform: rotate(-1.1deg); }
+.taller-card:nth-child(even) { transform: rotate(1.1deg); }
+.taller-card:hover { transform: rotate(0deg) translateY(-4px); }
+
+.taller-card svg { width: 52px; height: 52px; margin-bottom: var(--space-sm); }
+
+.taller-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.4em;
+}
+
+.taller-card p {
+  font-size: 1.02rem;
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+}
+
+.talleres-photo {
+  position: relative;
+  max-width: var(--content-max);
+  margin: var(--space-xl) auto 0;
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+  transform: rotate(0.5deg);
+}
+
+
+/* ---------- 9. TEASER DE MENÚ (index.html) ---------- */
+.menu-teaser {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-bg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.menu-teaser-decor { position: absolute; z-index: 0; opacity: 0.9; pointer-events: none; }
+.menu-teaser-decor--flower-1 { top: 8%; left: 6%; width: 58px; transform: rotate(6deg); }
+.menu-teaser-decor--splatter { top: 12%; right: 9%; width: 34px; transform: rotate(-10deg); }
+.menu-teaser-decor--star { bottom: 8%; right: 12%; width: 40px; }
+
+/* ---------- 10. MENÚ COMPLETO (menu.html) ---------- */
+.menu-cover {
+  position: relative;
+  min-height: 28vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--header-clearance) var(--space-md) var(--space-md);
+  overflow: hidden;
+}
+
+.menu-cover h1 {
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  margin-bottom: var(--space-sm);
+  position: relative;
+  z-index: 2;
+}
+
+.menu-cover-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.callout {
+  max-width: 760px;
+  margin: var(--space-lg) auto 0;
+  padding: var(--space-md);
+  background: var(--color-panel);
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  font-size: 1.05rem;
+  transform: rotate(-0.5deg);
+  position: relative;
+  z-index: 2;
+}
+.callout strong { color: var(--color-ink); }
+
+.menu {
+  padding: var(--space-lg) 0 var(--space-2xl);
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+.menu-decor { position: absolute; z-index: 0; opacity: 0.9; pointer-events: none; }
+.menu-decor--flower { top: 2%; right: 3%; width: 50px; transform: rotate(-7deg); }
+.menu-decor--star { bottom: 3%; left: 3%; width: 34px; }
+
+.menu-category {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto var(--space-2xl);
+  padding: 0 var(--space-md);
+  scroll-margin-top: var(--header-clearance);
+}
+.menu-category:last-child { margin-bottom: 0; }
+
+.menu-category h2 {
+  font-size: 1.7rem;
+  color: var(--color-ink);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.menu-note {
+  text-align: center;
+  color: var(--color-ink-soft);
+  font-size: 1.02rem;
+}
+
+.menu-items li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding: 0.65em 0;
+  border-bottom: 2px dotted var(--color-border);
+}
+.menu-items li:last-child { border-bottom: none; }
+
+.item-name {
+  font-size: 1.08rem;
+  flex: 1;
+  color: var(--color-ink);
+}
+.item-name em {
+  font-style: normal;
+  color: var(--color-ink-soft);
+  font-size: 0.9em;
+}
+
+.item-price {
+  font-size: 1.08rem;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.item-price--pending {
+  color: var(--accent-red);
+}
+
+.menu-legend {
+  text-align: center;
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto var(--space-xl);
+}
+
+/* ---------- 11. UBICACIÓN ---------- */
+.location {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-panel);
+  position: relative;
+  overflow: hidden;
+}
+.location-decor { position: absolute; z-index: 0; opacity: 0.9; pointer-events: none; }
+.location-decor--flower { top: 5%; right: 5%; width: 54px; transform: rotate(-9deg); }
+.location-decor--splatter { bottom: 6%; left: 4%; width: 32px; transform: rotate(14deg); }
+
+.location-grid {
+  max-width: var(--content-max);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.location-card {
+  position: relative;
+  background: var(--color-bg);
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.location-card:nth-child(1) { transform: rotate(-0.8deg); }
+.location-card:nth-child(2) { transform: rotate(0.6deg); }
+.location-card:nth-child(3) { transform: rotate(-0.4deg); }
+
+.location-card h3 {
+  font-size: 1.55rem;
+  color: var(--color-ink);
+  margin-bottom: var(--space-sm);
+}
+
+.location-card address,
+.location-card p {
+  font-style: normal;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--color-ink);
+}
+
+.location-card .btn { margin-top: var(--space-sm); }
+
+.location-map {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.location-map iframe {
+  width: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ---------- 12. CONTACTO ---------- */
+.contacto {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-bg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.contacto-decor { position: absolute; z-index: 0; opacity: 0.9; pointer-events: none; }
+.contacto-decor--flower { top: 6%; left: 5%; width: 52px; transform: rotate(8deg); }
+.contacto-decor--star { bottom: 8%; right: 6%; width: 36px; }
+
+.contacto-links {
+  max-width: 480px;
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.contacto-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  font-size: 1.1rem;
+  transition: transform var(--transition), background var(--transition);
+}
+.contacto-link:hover { background: var(--color-hover); transform: translateY(-2px); }
+.contacto-link svg { width: 26px; height: 26px; flex-shrink: 0; }
+
+.contacto-pending {
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+}
+
+/* ---------- 13. FOOTER ---------- */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-footer);
+  color: var(--color-ink);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  border-top: 2.5px solid var(--color-ink);
+}
+
+.footer-splatter { position: absolute; width: 34px; opacity: 0.85; pointer-events: none; }
+.footer-splatter--a { top: 14%; left: 8%; transform: rotate(-12deg); }
+.footer-splatter--b { bottom: 12%; right: 9%; transform: rotate(20deg); }
+@media (max-width: 600px) { .footer-splatter { display: none; } }
+
+.footer-inner {
+  text-align: center;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.7rem;
+  margin-bottom: var(--space-md);
+}
+.footer-brand svg { width: 40px; height: 40px; }
+
+.footer-links ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.footer-links a {
+  font-size: 1rem;
+  transition: color var(--transition);
+}
+.footer-links a:hover { opacity: 0.6; }
+
+.footer-address {
+  font-size: 0.98rem;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-xs);
+}
+
+.footer-no-delivery {
+  font-size: 0.92rem;
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+/* ---------- 14. RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .location-grid { grid-template-columns: 1fr; max-width: 480px; }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --header-height: 60px;
+    --header-gap: 0.75rem;
+  }
+
+  .site-header { width: calc(100% - 1.25rem); border-radius: 20px; }
+
+  /* En vez de escondernas, las redes se recorren junto al botón de
+     hamburguesa (a su izquierda) — más chicas para que quepan. */
+  .header-social { margin-left: auto; gap: 0.5rem; margin-right: 0.6rem; }
+  .header-social svg { width: 15px; height: 15px; }
+
+  .nav-toggle { display: flex; }
+
+  .main-nav {
+    position: fixed;
+    top: calc(var(--header-gap) + var(--header-height) + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 1.25rem);
+    max-height: calc(100vh - var(--header-clearance));
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.98);
+    border: 2px solid var(--color-ink);
+    border-radius: 16px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition), visibility var(--transition);
+  }
+
+  .main-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 0.85em 0;
+    font-size: 1.1rem;
+    border-bottom: 1.5px dotted var(--color-border);
+  }
+  .main-nav a::after { display: none; }
+
+  .header-inner { gap: 0.5rem; }
+
+  section > h2 { margin-bottom: var(--space-md); }
+
+  /* Nav de categorías del menú: se queda como barra deslizable en vez de
+     esconderse detrás del botón de hamburguesa, igual que en escritorio. */
+  .categories-toggle { display: none; }
+
+  .categories-nav {
+    position: static;
+    width: auto;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: visible;
+    background: none;
+    border: none;
+    border-radius: 0;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .categories-nav ul {
+    flex-direction: row;
+    gap: var(--space-md);
+    width: max-content;
+    padding: 0;
+  }
+
+  .categories-nav a {
+    display: inline-block;
+    padding: 0.3em 0;
+    font-size: 0.95rem;
+    border-bottom: none;
+  }
+
+  /* Los dibujitos/flores decorativos sueltos se ven bien en pantallas anchas,
+     pero en móvil (donde todo se apila y hay poco margen) terminan encima
+     del texto y las fotos del pato. Se esconden aquí — los patos "mascota"
+     que caminan sobre las fichas (Talleres de arte, Horario) se quedan,
+     porque van pegados a su propia tarjeta y no dependen del ancho de
+     pantalla. */
+  .hero-decor,
+  .about-decor,
+  .menu-teaser-decor,
+  .location-decor,
+  .contacto-decor,
+  .menu-decor,
+  .site-doodle:not(.mascot-climb) {
+    display: none;
+  }
+
+  /* El lápiz decorativo del hero quedaba encima del botón "Ver ubicación y
+     horario" en pantallas angostas — se esconde igual que el resto. */
+  .hero-brush { display: none; }
+
+  /* El pato parado en la ficha de Horario rozaba el título en móvil —
+     se recorre un poco más arriba para dejarle aire. */
+  .location-card .mascot-climb { top: -8px; }
+}
+
+/* ---------- 15. IMPRESIÓN (menu.html → PDF) ---------- */
+@media print {
+  .site-header,
+  .nav-toggle,
+  .menu-cover-actions,
+  .site-footer { display: none !important; }
+
+  body { background: #fff; color: #111; }
+
+  .menu-cover { min-height: auto; background: none !important; padding: 0 0 1.5rem; }
+  .menu-cover h1 { color: #111; }
+
+  .menu { background: #fff; padding: 0; }
+  .menu-category { page-break-inside: avoid; max-width: 100%; }
+  .item-price, .menu-category h2 { color: #722f1d; }
+  .menu-items li { border-bottom-color: rgba(0,0,0,0.15); }
+  .item-name { color: #111; }
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# PENDIENTE: actualizar con el dominio final de Cloudflare Pages
+Sitemap: https://vidacafe.pages.dev/sitemap.xml

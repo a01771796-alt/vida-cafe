@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vida Café — Cafetería y Centro Cultural en Metepec</title>
+  <meta name="description" content="Vida Café: cafetería y centro cultural en Metepec. Café de especialidad, talleres de arte, exposiciones y bazares. Sin servicio a domicilio.">
+
+  <!-- PENDIENTE: actualizar canonical/og:url con el dominio final de Cloudflare Pages -->
+  <link rel="canonical" href="https://vidacafe.pages.dev/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vida Café">
+  <meta property="og:title" content="Vida Café — Cafetería y Centro Cultural en Metepec">
+  <meta property="og:description" content="Café de especialidad, talleres de arte, exposiciones y bazares en Metepec. Sin servicio a domicilio.">
+  <meta property="og:url" content="https://vidacafe.pages.dev/">
+  <meta property="og:image" content="https://vidacafe.pages.dev/images/og-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_MX">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vida Café — Cafetería y Centro Cultural en Metepec">
+  <meta name="twitter:description" content="Café de especialidad, talleres de arte, exposiciones y bazares en Metepec.">
+  <meta name="twitter:image" content="https://vidacafe.pages.dev/images/og-preview.jpg">
+
+  <link rel="icon" type="image/png" href="images/favicon-pato.png">
+  <!-- Precarga de las fuentes locales criticas (cuerpo y titulares) para que
+       no se vean un instante con la fuente genérica del sistema antes de
+       cargar — ver font-display:block en style.css. -->
+  <link rel="preload" href="fonts/CrayonHandRegular2016Demo.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="fonts/BoldCrayola-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Vida Café",
+    "url": "https://vidacafe.pages.dev/",
+    "menu": "https://vidacafe.pages.dev/menu.html",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Ignacio Zaragoza 116, Espíritu Santo",
+      "addressLocality": "Metepec",
+      "addressRegion": "Estado de México",
+      "addressCountry": "MX"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.7",
+      "reviewCount": "234"
+    },
+    "sameAs": [
+      "https://www.instagram.com/vidacafemetepec/"
+    ]
+  }
+  </script>
+  <!-- NOTA: openingHours y telephone se omiten a propósito del structured data hasta
+       confirmar horario vigente y número de contacto (ver PENDIENTES en el código). -->
+</head>
+<body>
+
+  <!-- Filtro SVG de grano de crayón — compartido, se usa con moderación (solo en el
+       Tucurundi grande del hero y el de "Sobre nosotros") para no afectar el
+       rendimiento en móvil. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="crayon-grain" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise" seed="7"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#top" class="logo">
+        <img src="images/header-pato-color.png" alt="" class="logo-mark">
+        Vida Café
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#top">Inicio</a></li>
+          <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+          <li><a href="#menu-teaser">Menú</a></li>
+          <li><a href="#talleres">Talleres</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <nav class="header-social" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/vidacafemetepec/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <!-- PENDIENTE: confirmar URL exacta de la página de Facebook "Vida Café" -->
+        <a href="https://www.facebook.com/vidacafemetepec" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M13.8 8.2h-1.3c-.7 0-1.2.5-1.2 1.2v1.6H9.9v2h1.4V17h2v-4h1.4l.2-2h-1.6V9.7c0-.3.2-.5.5-.5h1.1V8.2z" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+
+      <svg class="hero-decor hero-decor--flower-1" viewBox="0 0 120 120" aria-hidden="true">
+        <g stroke="#e0562b" stroke-width="8" stroke-linecap="round">
+          <line x1="60" y1="60" x2="109" y2="57"/>
+          <line x1="60" y1="60" x2="101" y2="81"/>
+          <line x1="60" y1="60" x2="84" y2="103"/>
+          <line x1="60" y1="60" x2="60" y2="110"/>
+          <line x1="60" y1="60" x2="35" y2="102"/>
+          <line x1="60" y1="60" x2="17" y2="83"/>
+          <line x1="60" y1="60" x2="10" y2="58"/>
+          <line x1="60" y1="60" x2="18" y2="35"/>
+          <line x1="60" y1="60" x2="38" y2="18"/>
+          <line x1="60" y1="60" x2="62" y2="10"/>
+          <line x1="60" y1="60" x2="85" y2="17"/>
+          <line x1="60" y1="60" x2="104" y2="38"/>
+        </g>
+        <circle cx="60" cy="60" r="15" fill="#d9678f"/>
+      </svg>
+      <svg class="hero-decor hero-decor--flower-2" viewBox="0 0 120 120" aria-hidden="true">
+        <g fill="#2e6fd9">
+          <ellipse cx="60" cy="26" rx="18" ry="26" transform="rotate(-6 60 26)"/>
+          <ellipse cx="93" cy="46" rx="19" ry="26" transform="rotate(62 93 46)"/>
+          <ellipse cx="80" cy="88" rx="19" ry="26" transform="rotate(132 80 88)"/>
+          <ellipse cx="40" cy="88" rx="19" ry="26" transform="rotate(-132 40 88)"/>
+          <ellipse cx="27" cy="46" rx="19" ry="26" transform="rotate(-62 27 46)"/>
+        </g>
+        <circle cx="60" cy="58" r="16" fill="#f0b429"/>
+      </svg>
+      <svg class="hero-decor hero-decor--flower-3" viewBox="0 0 120 120" aria-hidden="true">
+        <g stroke="#d9678f" stroke-width="8" stroke-linecap="round">
+          <line x1="60" y1="60" x2="109" y2="57"/>
+          <line x1="60" y1="60" x2="101" y2="81"/>
+          <line x1="60" y1="60" x2="84" y2="103"/>
+          <line x1="60" y1="60" x2="60" y2="110"/>
+          <line x1="60" y1="60" x2="35" y2="102"/>
+          <line x1="60" y1="60" x2="17" y2="83"/>
+          <line x1="60" y1="60" x2="10" y2="58"/>
+          <line x1="60" y1="60" x2="18" y2="35"/>
+          <line x1="60" y1="60" x2="38" y2="18"/>
+          <line x1="60" y1="60" x2="62" y2="10"/>
+          <line x1="60" y1="60" x2="85" y2="17"/>
+          <line x1="60" y1="60" x2="104" y2="38"/>
+        </g>
+        <circle cx="60" cy="60" r="15" fill="#f0b429"/>
+      </svg>
+      <svg class="hero-decor hero-decor--star" viewBox="0 0 50 50" fill="none" stroke="#8b6bb1" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+        <path d="M25,3 L25,47 M5,13 L45,37 M45,13 L5,37"/>
+      </svg>
+      <svg class="hero-decor hero-decor--splatter" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20,6 C28,8 34,16 30,24 C34,28 30,34 22,32 C16,36 6,32 8,24 C2,20 6,10 14,10 C15,7 17,5 20,6 Z" fill="#d9503d"/>
+        <circle cx="34" cy="10" r="3" fill="#d9503d"/>
+        <circle cx="5" cy="33" r="2.5" fill="#d9503d"/>
+      </svg>
+      <img src="images/doodle-nina2.png" alt="" class="site-doodle" style="bottom:6%; right:6%; width:90px; transform:rotate(4deg);">
+      <img src="images/doodle-arana.png" alt="" class="site-doodle" style="top:8%; right:20%; width:60px; transform:rotate(-8deg);">
+      <img src="images/doodle-oso.png" alt="" class="site-doodle" style="top:22%; left:20%; width:100px; transform:rotate(6deg);">
+      <img src="images/doodle-nino2.png" alt="" class="site-doodle" style="bottom:4%; left:5%; width:80px; transform:rotate(-5deg);">
+      <img src="images/doodle-jirafa.png" alt="" class="site-doodle" style="top:4%; left:2%; width:70px; transform:rotate(4deg);">
+
+      <div class="hero-content">
+        <div class="hero-mascot">
+          <img src="images/header-pato-color.png" alt="Tucurundi, el pato mascota de Vida Café" loading="lazy">
+        </div>
+
+        <h1>
+          <span class="doodle-word doodle-color-a doodle-shape-1">Vida</span>
+          <span class="doodle-word doodle-color-e doodle-shape-2">CAFé</span>
+        </h1>
+        <p class="hero-tagline">Cafetería y centro cultural en Metepec — café de especialidad, talleres de arte y un espacio para quedarte un rato.</p>
+        <div class="hero-actions">
+          <svg class="hero-brush" viewBox="0 0 80 100" aria-hidden="true">
+            <path d="M55,8 L72,25 L38,59 L22,61 L24,45 Z" fill="none" stroke="#2b2420" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M22,61 L14,80 L22,74 L30,72 Z" fill="#2b2420"/>
+            <path d="M16,76 C10,82 8,90 12,96" fill="none" stroke="#4c7fb0" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="62" cy="16" r="5" fill="#4c7fb0"/>
+          </svg>
+          <a class="btn btn-primary" href="#ubicacion">Ver ubicación y horario</a>
+          <a class="btn btn-secondary" href="menu.html">Ver menú</a>
+        </div>
+        <p class="hero-rating">
+          <span aria-hidden="true">★★★★★</span>
+          <strong>4.7/5</strong> en Google
+          <a href="https://www.google.com/maps/place/VIDA+CAF%C3%88/@19.2511223,-99.6076966,17z/data=!4m8!3m7!1s0x85cd8b53cfdc57ed:0x4b6cc9bba37746ba!8m2!3d19.2511223!4d-99.6076966!9m1!1b1!16s%2Fg%2F11vdk07ysh?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">(234 reseñas)</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ SOBRE NOSOTROS ============ -->
+    <section id="sobre-nosotros" class="about">
+      <svg class="about-decor about-decor--flower-1" viewBox="0 0 120 120" aria-hidden="true">
+        <g fill="#4f8a52">
+          <ellipse cx="60" cy="26" rx="18" ry="26" transform="rotate(-6 60 26)"/>
+          <ellipse cx="93" cy="46" rx="19" ry="26" transform="rotate(62 93 46)"/>
+          <ellipse cx="80" cy="88" rx="19" ry="26" transform="rotate(132 80 88)"/>
+          <ellipse cx="40" cy="88" rx="19" ry="26" transform="rotate(-132 40 88)"/>
+          <ellipse cx="27" cy="46" rx="19" ry="26" transform="rotate(-62 27 46)"/>
+        </g>
+        <circle cx="60" cy="58" r="16" fill="#f0b429"/>
+      </svg>
+      <svg class="about-decor about-decor--star" viewBox="0 0 50 50" fill="none" stroke="#d9503d" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+        <path d="M25,3 L25,47 M5,13 L45,37 M45,13 L5,37"/>
+      </svg>
+      <svg class="about-decor about-decor--flower-2" viewBox="0 0 120 120" aria-hidden="true">
+        <g stroke="#4c7fb0" stroke-width="8" stroke-linecap="round">
+          <line x1="60" y1="60" x2="109" y2="57"/>
+          <line x1="60" y1="60" x2="101" y2="81"/>
+          <line x1="60" y1="60" x2="84" y2="103"/>
+          <line x1="60" y1="60" x2="60" y2="110"/>
+          <line x1="60" y1="60" x2="35" y2="102"/>
+          <line x1="60" y1="60" x2="17" y2="83"/>
+          <line x1="60" y1="60" x2="10" y2="58"/>
+          <line x1="60" y1="60" x2="18" y2="35"/>
+          <line x1="60" y1="60" x2="38" y2="18"/>
+          <line x1="60" y1="60" x2="62" y2="10"/>
+          <line x1="60" y1="60" x2="85" y2="17"/>
+          <line x1="60" y1="60" x2="104" y2="38"/>
+        </g>
+        <circle cx="60" cy="60" r="15" fill="#d97e2b"/>
+      </svg>
+      <img src="images/doodle-criatura-azul.png" alt="" class="site-doodle" style="top:6%; right:10%; width:70px; transform:rotate(-4deg);">
+      <img src="images/doodle-vaca.png" alt="" class="site-doodle" style="bottom:1%; left:8%; width:70px; transform:rotate(-4deg);">
+      <img src="images/doodle-corona.png" alt="" class="site-doodle" style="top:14%; left:4%; width:55px; transform:rotate(8deg);">
+      <img src="images/doodle-arana.png" alt="" class="site-doodle" style="top:42%; left:3%; width:55px; transform:rotate(-6deg);">
+      <img src="images/doodle-mariposa.png" alt="" class="site-doodle" style="top:44%; right:3%; width:60px; transform:rotate(6deg);">
+
+      <div class="about-card">
+        <div class="about-text">
+          <span class="eyebrow">Negocio familiar</span>
+          <h2>
+            <span class="doodle-word doodle-color-c doodle-shape-3">Quiénes</span>
+            somos
+          </h2>
+          <p>
+            Vida Café nació de la mano de Ana Sofía, barista y fundadora, con la idea de hacer
+            un espacio que fuera mucho más que una cafetería: un lugar para tomarse un café
+            de especialidad, pero también para pintar, leer, exponer fotografía o simplemente
+            quedarse un rato platicando.
+          </p>
+          <p>
+            Es un negocio de familia — por las noches el papá de Ana Sofía ayuda de mesero, y
+            su mamá es quien da los talleres de pintura. Y siempre anda por ahí Tucurundi,
+            el pato que nos representa: nuestro compañero de todos los días, con sus botas
+            de agua puestas, listo para lo que sea.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-photo">
+        <!-- FOTO PLACEHOLDER: reemplazar por foto real de Ana Sofía / familia / espacio -->
+        Foto real de Ana Sofía y el equipo próximamente
+      </div>
+    </section>
+
+    <!-- ============ TALLERES Y EVENTOS ============ -->
+    <section id="talleres" class="talleres">
+      <svg class="talleres-duck" viewBox="0 0 200 160" aria-hidden="true">
+        <path d="M40,70 C35,45 55,25 85,25 C110,25 128,38 132,58 C150,60 165,64 175,58 C165,70 148,72 133,68 C130,90 112,105 88,105 C60,105 42,92 40,70 Z" fill="none" stroke="#2b2420" stroke-width="4"/>
+        <path d="M45,68 C42,50 58,32 82,30" fill="none" stroke="#2b2420" stroke-width="2.5" opacity="0.55"/>
+        <circle cx="70" cy="42" r="3.5" fill="#2b2420"/>
+        <path d="M40,62 L18,58 L20,68 Z" fill="#d97e2b" stroke="#2b2420" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M40,68 L20,72 L24,78 Z" fill="#d9503d" stroke="#2b2420" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M75,103 L70,120 L62,118 L65,124 L78,124 L82,120 L76,103 Z" fill="#d9503d" stroke="#2b2420" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M105,103 L100,120 L92,118 L95,124 L108,124 L112,120 L106,103 Z" fill="#d9503d" stroke="#2b2420" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <svg class="hero-decor hero-decor--flower-3" style="top:6%; left:4%; width:56px; transform:rotate(-10deg);" viewBox="0 0 120 120" aria-hidden="true">
+        <g stroke="#8b6bb1" stroke-width="8" stroke-linecap="round">
+          <line x1="60" y1="60" x2="109" y2="57"/>
+          <line x1="60" y1="60" x2="101" y2="81"/>
+          <line x1="60" y1="60" x2="84" y2="103"/>
+          <line x1="60" y1="60" x2="60" y2="110"/>
+          <line x1="60" y1="60" x2="35" y2="102"/>
+          <line x1="60" y1="60" x2="17" y2="83"/>
+          <line x1="60" y1="60" x2="10" y2="58"/>
+          <line x1="60" y1="60" x2="18" y2="35"/>
+          <line x1="60" y1="60" x2="38" y2="18"/>
+          <line x1="60" y1="60" x2="62" y2="10"/>
+          <line x1="60" y1="60" x2="85" y2="17"/>
+          <line x1="60" y1="60" x2="104" y2="38"/>
+        </g>
+        <circle cx="60" cy="60" r="15" fill="#4f8a52"/>
+      </svg>
+      <img src="images/doodle-sol2.png" alt="" class="site-doodle" style="top:4%; right:14%; width:80px; transform:rotate(-5deg);">
+      <img src="images/doodle-mariposa.png" alt="" class="site-doodle" style="bottom:10%; left:5%; width:70px; transform:rotate(8deg);">
+      <img src="images/doodle-casa.png" alt="" class="site-doodle" style="top:8%; left:6%; width:80px; transform:rotate(5deg);">
+      <img src="images/doodle-ramo-flores.png" alt="" class="site-doodle" style="bottom:6%; right:6%; width:80px; transform:rotate(-6deg);">
+
+      <span class="eyebrow" style="text-align:center; display:block;">Nuestro diferenciador</span>
+      <h2>
+        <span class="doodle-word doodle-color-b doodle-shape-4">Talleres</span>
+        y eventos
+      </h2>
+
+      <div class="talleres-grid">
+
+        <article class="taller-card">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#2b2420" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M32,4 C15,4 4,15 4,29 C4,41 12,47 20,42 C24,40 23,34 27,32 C32,31 36,35 42,34 C53,31 60,38 60,25 C60,13 47,4 32,4 Z" fill="none"/>
+            <circle cx="17" cy="20" r="3.8" fill="#d9503d" stroke="none"/>
+            <circle cx="29" cy="13" r="3.8" fill="#f0b429" stroke="none"/>
+            <circle cx="43" cy="15" r="3.8" fill="#4c7fb0" stroke="none"/>
+            <circle cx="50" cy="27" r="3.8" fill="#4f8a52" stroke="none"/>
+            <circle cx="38" cy="25" r="3.8" fill="#8b6bb1" stroke="none"/>
+          </svg>
+          <h3>Talleres de arte</h3>
+          <p>Clases semanales de pintura impartidas por la mamá de Ana Sofía, para todos los niveles.</p>
+        </article>
+
+        <article class="taller-card">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#2b2420" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="8" y="20" width="48" height="34" rx="6"/>
+            <path d="M24,20 L28,13 L36,13 L40,20"/>
+            <circle cx="32" cy="37" r="11"/>
+            <circle cx="32" cy="37" r="4" fill="#2b2420"/>
+          </svg>
+          <h3>Exposiciones de fotografía</h3>
+          <p>Mostramos el trabajo de fotógrafos locales en nuestras paredes, con exposiciones rotativas.</p>
+        </article>
+
+        <article class="taller-card">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#2b2420" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14,26 L18,10 L46,10 L50,26 Z"/>
+            <path d="M10,26 L54,26 L50,56 L14,56 Z"/>
+            <path d="M14,26 C14,20 32,20 32,26 C32,20 50,20 50,26"/>
+          </svg>
+          <h3>Bazares</h3>
+          <p>Espacio para emprendedores y artistas locales que quieren vender lo que hacen.</p>
+        </article>
+
+        <article class="taller-card">
+          <img src="images/doodle-criatura-estrella.png" alt="" class="site-doodle" style="top:10%; left:-60px; width:45px; transform:rotate(6deg);">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#2b2420" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M32,14 C26,9 12,9 8,13 L8,50 C12,46 26,46 32,51"/>
+            <path d="M32,14 C38,9 52,9 56,13 L56,50 C52,46 38,46 32,51"/>
+            <line x1="32" y1="14" x2="32" y2="51"/>
+          </svg>
+          <h3>Club de lectura</h3>
+          <p>Nos juntamos a leer y platicar de libros en un ambiente relajado, con café en mano.</p>
+        </article>
+
+        <article class="taller-card">
+          <img src="images/doodle-corona.png" alt="" class="site-doodle" style="top:10%; right:-60px; width:50px; transform:rotate(-8deg);">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#2b2420" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="12" y="24" width="40" height="32" rx="3"/>
+            <path d="M12,24 L32,8 L52,24"/>
+            <path d="M38,56 L38,38 L26,38 L26,56"/>
+            <circle cx="34" cy="47" r="1.6" fill="#2b2420" stroke="none"/>
+          </svg>
+          <h3>Renta de espacio</h3>
+          <p>Rentamos nuestro espacio a terceros para eventos privados, presentaciones y reuniones.</p>
+        </article>
+
+      </div>
+
+      <div class="talleres-photo">
+        <img src="images/header-pato-color.png" alt="" class="site-doodle mascot-climb" style="top:0; left:62%; width:46px; transform:translateY(-100%) rotate(-6deg);">
+        <!-- FOTO PLACEHOLDER: reemplazar por foto real de un taller o evento en Vida Café -->
+        Foto real de un taller en Vida Café próximamente
+      </div>
+    </section>
+
+    <!-- ============ TEASER DE MENÚ ============ -->
+    <section id="menu-teaser" class="menu-teaser">
+      <svg class="menu-teaser-decor menu-teaser-decor--flower-1" viewBox="0 0 120 120" aria-hidden="true">
+        <g fill="#d9678f">
+          <ellipse cx="60" cy="26" rx="18" ry="26" transform="rotate(-6 60 26)"/>
+          <ellipse cx="93" cy="46" rx="19" ry="26" transform="rotate(62 93 46)"/>
+          <ellipse cx="80" cy="88" rx="19" ry="26" transform="rotate(132 80 88)"/>
+          <ellipse cx="40" cy="88" rx="19" ry="26" transform="rotate(-132 40 88)"/>
+          <ellipse cx="27" cy="46" rx="19" ry="26" transform="rotate(-62 27 46)"/>
+        </g>
+        <circle cx="60" cy="58" r="16" fill="#f0b429"/>
+      </svg>
+      <svg class="menu-teaser-decor menu-teaser-decor--splatter" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20,6 C28,8 34,16 30,24 C34,28 30,34 22,32 C16,36 6,32 8,24 C2,20 6,10 14,10 C15,7 17,5 20,6 Z" fill="#4c7fb0"/>
+        <circle cx="34" cy="10" r="3" fill="#4c7fb0"/>
+        <circle cx="5" cy="33" r="2.5" fill="#4c7fb0"/>
+      </svg>
+      <svg class="menu-teaser-decor menu-teaser-decor--star" viewBox="0 0 50 50" fill="none" stroke="#f0b429" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+        <path d="M25,3 L25,47 M5,13 L45,37 M45,13 L5,37"/>
+      </svg>
+      <img src="images/doodle-flor-azul.png" alt="" class="site-doodle" style="top:6%; left:16%; width:70px; transform:rotate(-8deg);">
+      <img src="images/doodle-corazon-verde.png" alt="" class="site-doodle" style="bottom:8%; right:16%; width:60px; transform:rotate(10deg);">
+      <img src="images/doodle-dino-verde.png" alt="" class="site-doodle" style="top:24%; right:8%; width:70px; transform:rotate(6deg);">
+      <img src="images/doodle-carita-feliz.png" alt="" class="site-doodle" style="bottom:10%; left:8%; width:55px; transform:rotate(-6deg);">
+
+      <h2>
+        <span class="doodle-word doodle-color-d doodle-shape-5">¡Nuestro</span>
+        menú!
+      </h2>
+      <p>Café, especiales, opciones sin café, fríos, algo dulce y algo salado.</p>
+      <a class="btn btn-primary" href="menu.html">Ver menú completo</a>
+    </section>
+
+    <!-- ============ UBICACIÓN ============ -->
+    <section id="ubicacion" class="location">
+      <svg class="location-decor location-decor--flower" viewBox="0 0 120 120" aria-hidden="true">
+        <g fill="#d97e2b">
+          <ellipse cx="60" cy="26" rx="18" ry="26" transform="rotate(-6 60 26)"/>
+          <ellipse cx="93" cy="46" rx="19" ry="26" transform="rotate(62 93 46)"/>
+          <ellipse cx="80" cy="88" rx="19" ry="26" transform="rotate(132 80 88)"/>
+          <ellipse cx="40" cy="88" rx="19" ry="26" transform="rotate(-132 40 88)"/>
+          <ellipse cx="27" cy="46" rx="19" ry="26" transform="rotate(-62 27 46)"/>
+        </g>
+        <circle cx="60" cy="58" r="16" fill="#8b6bb1"/>
+      </svg>
+      <svg class="location-decor location-decor--splatter" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20,6 C28,8 34,16 30,24 C34,28 30,34 22,32 C16,36 6,32 8,24 C2,20 6,10 14,10 C15,7 17,5 20,6 Z" fill="#d9503d"/>
+        <circle cx="34" cy="10" r="3" fill="#d9503d"/>
+        <circle cx="5" cy="33" r="2.5" fill="#d9503d"/>
+      </svg>
+      <img src="images/doodle-botas.png" alt="" class="site-doodle" style="top:4%; left:4%; width:80px; transform:rotate(-6deg);">
+      <img src="images/doodle-arbol.png" alt="" class="site-doodle" style="bottom:0%; right:14%; width:55px; transform:rotate(4deg);">
+      <img src="images/doodle-jirafa.png" alt="" class="site-doodle" style="top:6%; right:20%; width:60px; transform:rotate(4deg);">
+      <img src="images/doodle-caballo.png" alt="" class="site-doodle" style="bottom:0%; left:20%; width:60px; transform:rotate(-4deg);">
+
+      <h2>Ubicación y horario</h2>
+
+      <div class="location-grid">
+        <div class="location-card">
+          <img src="images/header-pato-color.png" alt="" class="site-doodle mascot-climb" style="top:0; right:16px; width:46px; transform:translateY(-100%) rotate(8deg);">
+          <h3>Horario</h3>
+          <!-- PENDIENTE: confirmar horario vigente (dos fuentes distintas, ver notas) -->
+          <p>Horario por confirmar.</p>
+        </div>
+
+        <div class="location-card">
+          <h3>Dirección</h3>
+          <address>Calle Ignacio Zaragoza 116,<br>Espíritu Santo, Metepec,<br>Estado de México</address>
+        </div>
+
+        <div class="location-card">
+          <h3>¿Delivery?</h3>
+          <p>No hacemos servicio a domicilio — te esperamos en el local 🦆</p>
+        </div>
+      </div>
+
+      <div class="location-map">
+        <iframe
+          title="Mapa de ubicación de Vida Café"
+          src="https://www.google.com/maps?q=Calle+Ignacio+Zaragoza+116%2C+Esp%C3%ADritu+Santo%2C+Metepec%2C+Estado+de+M%C3%A9xico&output=embed&z=16"
+          width="100%" height="380" style="border:0;" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto" class="contacto">
+      <svg class="contacto-decor contacto-decor--flower" viewBox="0 0 120 120" aria-hidden="true">
+        <g stroke="#4f8a52" stroke-width="8" stroke-linecap="round">
+          <line x1="60" y1="60" x2="109" y2="57"/>
+          <line x1="60" y1="60" x2="101" y2="81"/>
+          <line x1="60" y1="60" x2="84" y2="103"/>
+          <line x1="60" y1="60" x2="60" y2="110"/>
+          <line x1="60" y1="60" x2="35" y2="102"/>
+          <line x1="60" y1="60" x2="17" y2="83"/>
+          <line x1="60" y1="60" x2="10" y2="58"/>
+          <line x1="60" y1="60" x2="18" y2="35"/>
+          <line x1="60" y1="60" x2="38" y2="18"/>
+          <line x1="60" y1="60" x2="62" y2="10"/>
+          <line x1="60" y1="60" x2="85" y2="17"/>
+          <line x1="60" y1="60" x2="104" y2="38"/>
+        </g>
+        <circle cx="60" cy="60" r="15" fill="#e0562b"/>
+      </svg>
+      <svg class="contacto-decor contacto-decor--star" viewBox="0 0 50 50" fill="none" stroke="#4c7fb0" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+        <path d="M25,3 L25,47 M5,13 L45,37 M45,13 L5,37"/>
+      </svg>
+      <img src="images/doodle-criatura-estrella.png" alt="" class="site-doodle" style="top:10%; left:12%; width:50px; transform:rotate(6deg);">
+      <img src="images/doodle-elefante.png" alt="" class="site-doodle" style="bottom:10%; right:14%; width:85px; transform:rotate(-3deg);">
+      <img src="images/doodle-pajaro2.png" alt="" class="site-doodle" style="top:22%; right:6%; width:70px; transform:rotate(-4deg);">
+      <img src="images/doodle-criatura-azul.png" alt="" class="site-doodle" style="bottom:3%; left:6%; width:50px; transform:rotate(4deg);">
+
+      <h2>Contacto</h2>
+      <p>Síguenos y escríbenos por redes — muy pronto también por WhatsApp.</p>
+
+      <div class="contacto-links">
+        <a class="contacto-link" href="https://www.instagram.com/vidacafemetepec/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+          @vidacafemetepec
+        </a>
+        <!-- PENDIENTE: confirmar URL exacta de la página de Facebook "Vida Café" -->
+        <a class="contacto-link" href="https://www.facebook.com/vidacafemetepec" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M13.8 8.2h-1.3c-.7 0-1.2.5-1.2 1.2v1.6H9.9v2h1.4V17h2v-4h1.4l.2-2h-1.6V9.7c0-.3.2-.5.5-.5h1.1V8.2z" fill="currentColor" stroke="none"/></svg>
+          Vida Café
+        </a>
+      </div>
+
+      <!-- PENDIENTE: teléfono/WhatsApp de contacto -->
+      <p class="contacto-pending">Teléfono / WhatsApp: próximamente.</p>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <svg class="footer-splatter footer-splatter--a" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M20,6 C28,8 34,16 30,24 C34,28 30,34 22,32 C16,36 6,32 8,24 C2,20 6,10 14,10 C15,7 17,5 20,6 Z" fill="#4c7fb0"/>
+      <circle cx="34" cy="10" r="3" fill="#4c7fb0"/>
+    </svg>
+    <svg class="footer-splatter footer-splatter--b" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M20,6 C28,8 34,16 30,24 C34,28 30,34 22,32 C16,36 6,32 8,24 C2,20 6,10 14,10 C15,7 17,5 20,6 Z" fill="#f0b429"/>
+      <circle cx="6" cy="32" r="3" fill="#f0b429"/>
+    </svg>
+    <img src="images/doodle-regadera.png" alt="" class="site-doodle" style="top:10%; right:6%; width:80px; transform:rotate(-6deg);">
+    <img src="images/doodle-nino2.png" alt="" class="site-doodle" style="top:6%; left:30%; width:60px; transform:rotate(4deg);">
+    <img src="images/doodle-dino-verde.png" alt="" class="site-doodle" style="bottom:6%; right:20%; width:65px; transform:rotate(4deg);">
+    <img src="images/doodle-vaca.png" alt="" class="site-doodle" style="bottom:8%; left:4%; width:55px; transform:rotate(-4deg);">
+    <img src="images/doodle-corona.png" alt="" class="site-doodle" style="top:4%; left:50%; width:45px; transform:rotate(-6deg);">
+    <img src="images/header-pato-color.png" alt="" class="site-doodle" style="bottom:14%; right:36%; width:42px; transform:rotate(10deg);">
+    <div class="footer-inner">
+      <p class="footer-brand">
+        <img src="images/header-pato-color.png" alt="" class="logo-mark">
+        Vida Café
+      </p>
+      <nav class="footer-links" aria-label="Enlaces de contacto">
+        <ul>
+          <li><a href="#top">Inicio</a></li>
+          <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+          <li><a href="menu.html">Menú</a></li>
+          <li><a href="#talleres">Talleres</a></li>
+          <li><a href="https://www.instagram.com/vidacafemetepec/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/vidacafemetepec" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </nav>
+      <p class="footer-address">Calle Ignacio Zaragoza 116, Espíritu Santo, Metepec, Estado de México</p>
+      <p class="footer-no-delivery">No hacemos servicio a domicilio.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
