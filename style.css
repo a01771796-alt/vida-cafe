@@ -924,6 +924,12 @@ section > h2 {
   .header-social { margin-left: auto; gap: 0.5rem; margin-right: 0.6rem; }
   .header-social svg { width: 15px; height: 15px; }
 
+  /* En menu.html las redes solo se muestran en escritorio — en móvil ya
+     hay poco espacio junto a la barra de categorías deslizable y estorban.
+     El selector solo alcanza a esta página: .categories-nav no existe en
+     el header de index.html. */
+  .categories-nav ~ .header-social { display: none; }
+
   .nav-toggle { display: flex; }
 
   .main-nav {
