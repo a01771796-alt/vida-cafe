@@ -1071,3 +1071,8 @@ section > h2 {
   .menu-items li { border-bottom-color: rgba(0,0,0,0.15); }
   .item-name { color: #111; }
 }
+
+/* Crédito de Nucleo: obligatorio en todo sitio (demo o vendido); solo se quita si Luis lo indica para ese cliente. */
+.footer-credito { font-size: 0.8rem; margin-top: 0.5rem; }
+.footer-credito a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.footer-credito a:hover { opacity: 0.8; }
